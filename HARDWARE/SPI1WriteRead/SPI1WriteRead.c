@@ -10,7 +10,7 @@
 extern type_att_para2_obj type_att_para2;
 extern ac_real1_obj ac_real1;
 extern ac_real2_obj ac_real2;
-extern u8 SPI1_REC_BUF[512];
+extern u8 SPI1_REC_BUF_[196];
 extern u8 adj_flag,krcnt;
 extern u8 RXstatus;
 extern u32 AdjSta,krnum;
@@ -309,11 +309,28 @@ void StartAdj(u32 Mode, u32 sn)
 void FramRec(void)
 {
 	u16 isum, iend, sum = 0;
-	u16 i=0;
+	u16 i=0,j;
+	u8 SPI1_REC_BUF[196];
+	while(i<196 && SPI1_REC_BUF_[i]!=0xfe)
+	{
+		j=SPI1_REC_BUF_[i];
+		i++;
+	}
+	if(i!=196)
+	for(j=0;j<196;j++)
+	{
+		if(i>196)i=0;
+		SPI1_REC_BUF[j]=SPI1_REC_BUF_[i];
+		SPI1_REC_BUF_[i]=0;
+		i++;
+	}
+	
+	i=0;
 	
 	if(ArrayData(&SPI1_REC_BUF[i], 4) == 0xfefefefe)//如果已收入至少四个字节判断帧头
 	  {
 			iend = SPI1_REC_BUF[i+9]*256+SPI1_REC_BUF[i+8]+12+i;
+
 		  if(ArrayData(&SPI1_REC_BUF[iend], 4) == 0xfcfcfcfc)//判断帧尾是否到达
 			{
 
@@ -367,7 +384,6 @@ void FramRec(void)
 								
 								default: {adj_flag =0;}
 							}
-							SPI1_REC_BUF[i]=0; i=i+48;
 						}
 						
 						else if(ArrayData_(&SPI1_REC_BUF[i+6], 2) == 0x0200)//写校表参数
@@ -378,16 +394,16 @@ void FramRec(void)
 							SPI1_REC_BUF[i]=0; i=i+208;
 						}
 					}
-					else initDMA();
+					else return;
 				}
 				else
 				{
 					sum = 0;
-					initDMA();
+					return;
 					//return 0;//校验和与帧数据不匹配
 				}
-			}else initDMA();
-	  }else initDMA();
+			}else return;
+	  }else return;
 
 }
 	
@@ -397,6 +413,7 @@ void writeadjdata(u16 i)//帧数据data写入校表数据结构体
 	u8 j;
 	for(j=0;j<176;j++)
 	{
-		*(u8 *)(&type_att_para2.w_PhSregApq[0]+j)=SPI1_REC_BUF[i+26+j];
+		*(u8 *)(&type_att_para2.w_PhSregApq[0]+j)=SPI1_REC_BUF_[i+26+j];
 	}
 }
+

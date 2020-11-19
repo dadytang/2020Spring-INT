@@ -23,7 +23,7 @@
 
 extern rt_thread_t tid1;
 extern rt_sem_t dynamic_sem;
-u8 SPI1_REC_BUF[512];
+u8 SPI1_REC_BUF_[196];
 u8 Response[196]={0xf1,0xf1,0xf1,0xf1,0xf2,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,
                   0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,
                   0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,0xf3,
@@ -77,7 +77,7 @@ void SPI1_Init(void)
 	
 	DMA_DeInit(DMA1_Channel2);
   DMA_InitStruct.DMA_PeripheralBaseAddr = (uint32_t)(&SPI1->DR);    //外设至寄存器
-  DMA_InitStruct.DMA_MemoryBaseAddr = (uint32_t) SPI1_REC_BUF;
+  DMA_InitStruct.DMA_MemoryBaseAddr = (uint32_t) SPI1_REC_BUF_;
   DMA_InitStruct.DMA_MemoryInc = DMA_MemoryInc_Enable;
   DMA_InitStruct.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
   DMA_InitStruct.DMA_BufferSize = 196;
@@ -86,7 +86,7 @@ void SPI1_Init(void)
   DMA_InitStruct.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
   DMA_InitStruct.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
   DMA_InitStruct.DMA_Priority = DMA_Priority_Medium;
-  DMA_InitStruct.DMA_Mode = DMA_Mode_Normal;
+  DMA_InitStruct.DMA_Mode = DMA_Mode_Circular;//循环接收模式
   DMA_Init(DMA1_Channel2, &DMA_InitStruct);
 	
 	
@@ -119,9 +119,7 @@ void DMA1_Channel2_Check(void)
 {
 	static u8 i=0;
 	static u32 state=0;
-	if(SPI1_REC_BUF[0]==0xfe)
-	{
-		if(DMA1_Channel2->CNDTR!=196)
+		if(DMA1_Channel2->CNDTR<196)
 		{
 			if(state!=DMA1_Channel2->CNDTR)
 			{
@@ -137,7 +135,6 @@ void DMA1_Channel2_Check(void)
 				else i+=1;
 			}
 		}
-	}
 }
 
 void NVIC_DMAinit(void)

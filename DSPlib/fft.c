@@ -55,15 +55,15 @@ void Wn_i(int n,int i,complex *Wn,char flag)
   Wn->imag = -sin(2*PI*i/n);
 }
 
-void fft(int N,complex f[])
+void fft(int Na,complex f[])
 {
   complex t,wn;
   int i,j,k,m,n,l,r,M;
   int la,lb,lc;
 
-  for(i=N,M=1;(i=i/2)!=1;M++); 
+  for(i=Na,M=1;(i=i/2)!=1;M++); 
 
-  for(i=1,j=N/2;i<=N-2;i++)
+  for(i=1,j=Na/2;i<=Na-2;i++)
   {
     if(i<j)
     {
@@ -71,7 +71,7 @@ void fft(int N,complex f[])
       f[j]=f[i];
       f[i]=t;
     }
-    k=N/2;
+    k=Na/2;
     while(k<=j)
     {
       j=j-k;
@@ -90,10 +90,10 @@ void fft(int N,complex f[])
     for(l=1;l<=lb;l++)
     {
       r=(l-1)*pow(2,M-m);	
-      for(n=l-1;n<N-1;n=n+la) 
+      for(n=l-1;n<Na-1;n=n+la) 
       {
         lc=n+lb;  //n,lc??????????????????     
-        Wn_i(N,r,&wn,1);//wn=Wnr
+        Wn_i(Na,r,&wn,1);//wn=Wnr
         c_mul(f[lc],wn,&t);//t = f[lc] * wn????
         c_sub(f[n],t,&(f[lc]));//f[lc] = f[n] - f[lc] * Wnr
         c_plus(f[n],t,&(f[n]));//f[n] = f[n] + f[lc] * Wnr

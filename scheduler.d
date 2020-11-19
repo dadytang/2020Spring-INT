@@ -1,0 +1,11 @@
+..\scheduler.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\src\scheduler.c
+..\scheduler.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rtthread.h
+..\scheduler.o: D:\MDK5\AdjCompV4.1\USER\RTE\RTOS\rtconfig.h
+..\scheduler.o: D:\MDK5\AdjCompV4.1\USER\RTE\RTE_Components.h
+..\scheduler.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rtdebug.h
+..\scheduler.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rtdef.h
+..\scheduler.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\scheduler.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rtservice.h
+..\scheduler.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rtm.h
+..\scheduler.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rtthread.h
+..\scheduler.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rthw.h

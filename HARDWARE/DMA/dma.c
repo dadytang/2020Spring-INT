@@ -13,7 +13,6 @@
 //All rights reserved									  
 //////////////////////////////////////////////////////////////////////////////////
 extern u8 DMAstate;
-extern u8 SPI1_REC_BUF[512];
 DMA_InitTypeDef DMA_InitStructure;
 
 u16 DMA1_MEM_LEN;//保存DMA每次数据传送的长度 	    
@@ -49,21 +48,12 @@ void MYDMA_Config(u32 cpar,u32 cmar,u16 cndtr)
 //开启一次DMA传输
 void MYDMA_Enable(DMA_Channel_TypeDef*DMA_CHx)
 { 
-	SPI1_REC_BUF[0]=0;
 	DMA_Cmd(DMA_CHx, DISABLE );  //关闭USART1 TX DMA1 所指示的通道      
  	DMA_SetCurrDataCounter(DMA_CHx,DMA1_MEM_LEN);//DMA通道的DMA缓存的大小
 	NVIC_DMAinit();//dma中断使能
  	DMA_Cmd(DMA_CHx, ENABLE);  //使能USART1 TX DMA1 所指示的通道 
 }	  
 
-
-void initDMA(void)
-{
-	SPI1_REC_BUF[0]=0;
-	DMA_Cmd(DMA1_Channel2, DISABLE );  //关闭USART1 TX DMA1 所指示的通道 	
- 	DMA_SetCurrDataCounter(DMA1_Channel2,196);//DMA通道的DMA缓存的大小
- 	DMA_Cmd(DMA1_Channel2, ENABLE);  //使能USART1 TX DMA1 所指示的通道 
-}	
 
 
 

@@ -18,7 +18,6 @@
 void MYDMA_Config(u32 cpar,u32 cmar,u16 cndtr);//≈‰÷√DMA1_CHx
 
 void MYDMA_Enable(DMA_Channel_TypeDef*DMA_CHx);// πƒ‹DMA1_CHx
-void initDMA(void);
 void MYDMA_Config_(u32 cpar,u32 cmar,u16 cndtr);//≈‰÷√DMA1_CHx
 		   
 #endif

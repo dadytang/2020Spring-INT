@@ -1,0 +1,11 @@
+..\object.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\src\object.c
+..\object.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rtthread.h
+..\object.o: D:\MDK5\AdjCompV4.1\USER\RTE\RTOS\rtconfig.h
+..\object.o: D:\MDK5\AdjCompV4.1\USER\RTE\RTE_Components.h
+..\object.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rtdebug.h
+..\object.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rtdef.h
+..\object.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\object.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rtservice.h
+..\object.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rtm.h
+..\object.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rtthread.h
+..\object.o: D:\MDK5\ARM\PACK\RealThread\RT-Thread\3.1.3\include\rthw.h
