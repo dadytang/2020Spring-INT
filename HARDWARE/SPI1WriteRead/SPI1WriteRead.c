@@ -17,6 +17,7 @@ extern u32 AdjSta,krnum;
 extern 	_ac_time3_t_obj tm[20];
 extern emuInfo_t_obj emuInfo_t;
 u32 adj_m;
+u8 SPI1_REC_BUF[196];
 frm_rd_coeff_respose_obj frm_rd_coeff_respose;
 EmuInfoResp_t_obj EmuInfoResp_t;
 ac_real2_t_obj ac_rea12_t;
@@ -310,13 +311,13 @@ void FramRec(void)
 {
 	u16 isum, iend, sum = 0;
 	u16 i=0,j;
-	u8 SPI1_REC_BUF[196];
+	//u8 SPI1_REC_BUF[196];
 	while(i<196 && SPI1_REC_BUF_[i]!=0xfe)
 	{
 		j=SPI1_REC_BUF_[i];
 		i++;
 	}
-	if(i!=196)
+	if(i!=196){
 	for(j=0;j<196;j++)
 	{
 		if(i>196)i=0;
@@ -404,7 +405,7 @@ void FramRec(void)
 				}
 			}else return;
 	  }else return;
-
+	}
 }
 	
 		

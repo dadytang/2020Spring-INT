@@ -19,7 +19,7 @@ rt_sem_t dynamic_sem = RT_NULL;
 extern u32 AdjSta;
 extern u32 adj_m;
 extern type_att_para2_obj type_att_para2;
-u8 test[8192];
+//u8 test[8192];
 
 void thread_entry_fram(void* parameter);
 void thread_entry_updata(void* parameter);
@@ -32,8 +32,8 @@ void thread_entry_fram(void* parameter)//线程1帧校验函数入口
 		{
 			result = rt_sem_take(dynamic_sem, RT_WAITING_FOREVER);
 			if (result == RT_EOK)
-	    FramRec();
-	    //i=rt_thread_control(tid2,RT_THREAD_CTRL_CHANGE_PRIORITY,(void*)1);
+			FramRec();
+				//i=rt_thread_control(tid2,RT_THREAD_CTRL_CHANGE_PRIORITY,(void*)1);
 			//rt_thread_suspend(tid1);
 			//rt_schedule();
 	  }
@@ -42,7 +42,7 @@ void thread_entry_fram(void* parameter)//线程1帧校验函数入口
 void thread_entry_updata(void* parameter)//线程2帧响应函数入口
 {
 	u32 ac_real1_sn=0;
-	
+	//rt_thread_t thread = 0;
 	while(1)
 	{
 		if(adj_flag==0)//标志位0，正常工作状态
