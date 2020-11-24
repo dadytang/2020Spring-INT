@@ -3,11 +3,11 @@
 <title>Static Call Graph - [..\thefirstest.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\thefirstest.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Fri Nov 20 18:56:07 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Tue Nov 24 10:35:29 2020
 <BR><P>
 <H3>Maximum Stack Usage =        300 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-__rt_entry_main &rArr; main &rArr; rtthread_startup &rArr; rt_application_init &rArr; rt_thread_create &rArr; rt_object_delete &rArr; rt_free &rArr; rt_kprintf &rArr; rt_vsnprintf &rArr; print_number
+main_thread_entry &rArr; $Super$$main &rArr; rt_thread_create &rArr; rt_object_delete &rArr; rt_free &rArr; rt_kprintf &rArr; rt_vsnprintf &rArr; print_number
 <P>
 <H3>
 Functions with no stack information
@@ -1742,8 +1742,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FramRec
 </UL>
 
-<P><STRONG><a name="[fa]"></a>$Super$$main</STRONG> (Thumb, 242 bytes, Stack size 16 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 284<LI>Call Chain = $Super$$main &rArr; rt_thread_create &rArr; rt_object_delete &rArr; rt_free &rArr; rt_kprintf &rArr; rt_vsnprintf &rArr; print_number
+<P><STRONG><a name="[fa]"></a>$Super$$main</STRONG> (Thumb, 282 bytes, Stack size 24 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 292<LI>Call Chain = $Super$$main &rArr; rt_thread_create &rArr; rt_object_delete &rArr; rt_free &rArr; rt_kprintf &rArr; rt_vsnprintf &rArr; print_number
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_thread_startup
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_thread_mdelay
@@ -1766,7 +1766,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4f]"></a>main_thread_entry</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, components.o(i.main_thread_entry))
-<BR><BR>[Stack]<UL><LI>Max Depth = 292<LI>Call Chain = main_thread_entry &rArr; $Super$$main &rArr; rt_thread_create &rArr; rt_object_delete &rArr; rt_free &rArr; rt_kprintf &rArr; rt_vsnprintf &rArr; print_number
+<BR><BR>[Stack]<UL><LI>Max Depth = 300<LI>Call Chain = main_thread_entry &rArr; $Super$$main &rArr; rt_thread_create &rArr; rt_object_delete &rArr; rt_free &rArr; rt_kprintf &rArr; rt_vsnprintf &rArr; print_number
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_components_init

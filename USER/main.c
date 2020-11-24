@@ -61,7 +61,7 @@ void thread_entry_updata(void* parameter)//线程2帧响应函数入口
 
 int main(void)
 {
-	u32 id;
+	u32 id,id1;
 	
 	//uart_init(0x0001C200);//spi1端口
 	SPI1_Init();
@@ -87,7 +87,9 @@ int main(void)
 		MYDMA_Config((u32)&SPI1->DR,(u32)&test,0x2000);
 	  SPI_I2S_DMACmd(SPI1, SPI_I2S_DMAReq_Tx, ENABLE);//使能DMA发送
 	  MYDMA_Enable(DMA1_Channel2);//开始一次发送*/
-		
+		AT24CXX_Read(1024,(u8 *)&id,4);
+		AT24CXX_Read(1224,(u8 *)&id1,4);
+		if(id==0x52613231&&id1==0x51974237)
 	  AT24CXX_Read(1028,(u8 *)&type_att_para2.w_PhSregApq[0],176);//eeprom里读校表数据
 	  //ClearAdjustRegister();//清除校表寄存器
 
